@@ -115,8 +115,8 @@ WORDS = {
 }
 
 AMOUNTS = {
-  'crore': 'करोड',
-  'lakh': 'लाख',
-  'hajaar': 'हजार',
   'saya': 'सय',
+  'hajaar': 'हजार',
+  'lakh': 'लाख',
+  'crore': 'करोड',
 }
