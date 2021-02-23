@@ -10,7 +10,7 @@ class TestFormat(unittest.TestCase):
 
   def test_format_to_nepali_words(self):
     assert fnw(0) == "सुन्ना"
-    assert fnw(92486540) == "नौ करोड चौबिस लाख छयासी हजार पाँच सय चालिस"
+    assert fnw(92486540) == "नौ करोड चौबीस लाख छयासी हजार पाँच सय चालीस"
 
 if __name__ == '__main__':
     unittest.main()
