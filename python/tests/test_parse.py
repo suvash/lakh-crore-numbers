@@ -1,6 +1,7 @@
 import unittest
 
 from lakh_crore_numbers.parse import get_chunks
+from lakh_crore_numbers.errors import UnsupportedLargeNumberError
 
 class TestChunks(unittest.TestCase):
   def test_get_chunks(self):
@@ -25,7 +26,7 @@ class TestChunks(unittest.TestCase):
     assert get_chunks(8205957952685073935) == [(82, 'shankha'), (5, 'padma'), (95, 'neel'), (79, 'kharab'), (52, 'arab'), (68, 'crore'), (50, 'lakh'), (73, 'hajaar'), (9, 'saya'), (35, None)]
 
   def test_get_chunks_raises_error(self):
-    with self.assertRaises(Exception):
+    with self.assertRaises(UnsupportedLargeNumberError):
       get_chunks(1_00_00_00_00_00_00_00_00_000)
 
 
