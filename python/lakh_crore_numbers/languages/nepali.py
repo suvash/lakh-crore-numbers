@@ -119,4 +119,9 @@ AMOUNTS = {
   'hajaar': 'हजार',
   'lakh': 'लाख',
   'crore': 'करोड',
+  'arab': 'अर्ब',
+  'kharab': 'खर्ब',
+  'neel': 'नील',
+  'padma': 'पद्म',
+  'shankha': 'शंख',
 }
