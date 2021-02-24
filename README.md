@@ -7,7 +7,11 @@ This numbering system (also known as Indian numbering system) is widely used in 
 
 ## Installation
 
-The API is in early stages. It's currently recommended to install directly from github or clone the repository locally.
+lakh-crore-numbers is available on PyPI:
+
+```bash
+ python -m pip install lakh-crore-numbers
+```
 
 ## Supported Language(s)
 
@@ -45,15 +49,16 @@ import lakh_crore_numbers as lcn
 assert lcn.format_to_nepali_words(901489783456) == 'नौ खर्ब एक अर्ब अठचालीस करोड सन्तानब्बे लाख त्रियासी हजार चार सय छपन्न'
 ```
 
-For more formatting examples, please [take a look here](python/tests/test_format.py).
+For more formatting examples, please [take a look here](https://github.com/suvash/lakh-crore-numbers/blob/main/python/tests/test_format.py).
 
 
 ## Changelog
 
-Please check the [CHANGELOG.md](CHANGELOG.md) for details.
+Please check the [CHANGELOG.md](https://github.com/suvash/lakh-crore-numbers/blob/main/python/CHANGELOG.md) for details.
+
 
 ## License
 
 Copyright © 2021, Suvash Thapaliya
 
-Distributed under the [ISC License](LICENSE).
+Distributed under the [ISC License](https://github.com/suvash/lakh-crore-numbers/blob/main/LICENSE).
