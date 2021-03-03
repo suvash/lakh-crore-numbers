@@ -2,6 +2,19 @@ from .errors import UnsupportedLargeNumberError
 
 MAX_NUMBER = 99_99_99_99_99_99_99_99_999
 
+UNIT_AMOUNTS = [
+  ('shankha', 1_00_00_00_00_00_00_00_000),
+  ('padma',      1_00_00_00_00_00_00_000),
+  ('neel',          1_00_00_00_00_00_000),
+  ('kharab',           1_00_00_00_00_000),
+  ('arab',                1_00_00_00_000),
+  ('crore',                  1_00_00_000),
+  ('lakh',                      1_00_000),
+  ('hajaar',                       1_000),
+  ('saya',                           100),
+  (None,                               1),
+]
+
 def get_chunks(number):
   result = None
   if number > MAX_NUMBER:
@@ -9,41 +22,22 @@ def get_chunks(number):
   elif number == 0:
     result = [(0, None)]
   else:
-    result = _get_chunks(number)
+    result = _get_chunks(number, iter(UNIT_AMOUNTS))
 
   return result
 
-def _get_chunks(number):
-  if number >= 1_00_00_00_00_00_00_00_000:
-    (shankha, rest) = divmod(number, 1_00_00_00_00_00_00_00_000)
-    result = [(shankha, 'shankha')] + _get_chunks(rest)
-  elif number >= 1_00_00_00_00_00_00_000:
-    (padma, rest) = divmod(number, 1_00_00_00_00_00_00_000)
-    result = [(padma, 'padma')] + _get_chunks(rest)
-  elif number >= 1_00_00_00_00_00_000:
-    (neel, rest) = divmod(number, 1_00_00_00_00_00_000)
-    result = [(neel, 'neel')] + _get_chunks(rest)
-  elif number >= 1_00_00_00_00_000:
-    (kharab, rest) = divmod(number, 1_00_00_00_00_000)
-    result = [(kharab, 'kharab')] + _get_chunks(rest)
-  elif number >= 1_00_00_00_000:
-    (arab, rest) = divmod(number, 1_00_00_00_000)
-    result = [(arab, 'arab')] + _get_chunks(rest)
-  elif number >= 1_00_00_000:
-    (crore, rest) = divmod(number, 1_00_00_000)
-    result = [(crore, 'crore')] + _get_chunks(rest)
-  elif number >= 1_00_000:
-    (lakh, rest) = divmod(number, 1_00_000)
-    result = [(lakh, 'lakh')] + _get_chunks(rest)
-  elif number >= 1_000:
-    (hajaar, rest) = divmod(number, 1_000)
-    result = [(hajaar, 'hajaar')] + _get_chunks(rest)
-  elif number >= 100:
-    (saya, rest) = divmod(number, 100)
-    result = [(saya, 'saya')] + _get_chunks(rest)
-  elif number >= 1:
-    result = [(number, None)]
+def _get_chunks(number, unit_amounts_iter):
+  unit_amount = next(unit_amounts_iter, None)
+
+  if unit_amount is None:
+    return []
+
   else:
-    result = []
+    (unit, unit_amount) = unit_amount
+    if number >= unit_amount:
+      (quotient, remainder) = divmod(number, unit_amount)
+      result = [(quotient, unit)] + _get_chunks(remainder, unit_amounts_iter)
+    else:
+      result = _get_chunks(number, unit_amounts_iter)
 
-  return result
+    return result

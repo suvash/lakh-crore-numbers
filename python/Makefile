@@ -10,6 +10,9 @@ help: ## Display this help
 clean: ## Cleanup the project folders
 	rm -rf build/ dist/ *.egg-info/
 
+test: ## Run the tests
+	python3 -m unittest discover tests/
+
 setup-build: ## Setup the build packages
 	python3 -m pip install --upgrade build
 
