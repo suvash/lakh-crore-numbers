@@ -1,5 +1,7 @@
 # Lakh Crore Numbers
 
+[![Build Status](https://github.com/suvash/lakh-crore-numbers/actions/workflows/.github/workflows/run-python-tests.yml/badge.svg)](https://github.com/suvash/lakh-crore-numbers/actions/workflows/run-python-tests.yml)
+
 A Python library for formatting numbers into the "Lakh Crore" (...हजार, लाख, करोड, अर्ब...) system.
 
 This numbering system (also known as Indian numbering system) is widely used in the subcontinent, including Bangladesh, Bhutan, India, Maldives, Nepal, Pakistan and Sri Lanka [to express large numbers](https://en.wikipedia.org/wiki/Indian_numbering_system). The terms `lakh` and `crore` are commonly used in everyday scenarios. The library currently supports formatting all the way up to `sankha`.
