@@ -22,22 +22,14 @@ def get_chunks(number):
   elif number == 0:
     result = [(0, None)]
   else:
-    result = _get_chunks(number, iter(UNIT_AMOUNTS))
+    result = list(_chunkator(number, UNIT_AMOUNTS))
 
   return result
 
-def _get_chunks(number, unit_amounts_iter):
-  unit_amount = next(unit_amounts_iter, None)
-
-  if unit_amount is None:
-    return []
-
-  else:
-    (unit, unit_amount) = unit_amount
-    if number >= unit_amount:
-      (quotient, remainder) = divmod(number, unit_amount)
-      result = [(quotient, unit)] + _get_chunks(remainder, unit_amounts_iter)
-    else:
-      result = _get_chunks(number, unit_amounts_iter)
-
-    return result
+def _chunkator(number, unit_amounts):
+  chunk_number = number
+  for (unit, unit_amount) in unit_amounts:
+    if chunk_number >= unit_amount:
+      (quotient, remainder) = divmod(chunk_number, unit_amount)
+      yield (quotient, unit)
+      chunk_number = remainder
