@@ -1,9 +1,32 @@
-use super::Translate;
+use super::Translatable;
 use crate::types::Unit;
 
-struct Nepali;
+#[derive(Debug, PartialEq, Eq)]
+pub struct Nepali {
+    pub name: String,
+}
 
-impl Translate for Nepali {
+impl Nepali {
+    pub fn new() -> Nepali {
+        Nepali {
+            ..Default::default()
+        }
+    }
+}
+
+impl Default for Nepali {
+    fn default() -> Nepali {
+        Nepali {
+            name: "nepali".to_string(),
+        }
+    }
+}
+
+impl Translatable for Nepali {
+    fn name(&self) -> &str {
+        &self.name
+    }
+
     fn words(&self, number: u8) -> &'static str {
         match number {
             0 => "सुन्ना",
@@ -131,14 +154,20 @@ mod tests {
     use super::*;
 
     #[test]
+    fn test_name() {
+        let lang = Nepali::new();
+        assert_eq!("nepali", lang.name());
+    }
+
+    #[test]
     fn test_words() {
-	let lang = Nepali;
+        let lang = Nepali::new();
         assert_eq!("अठतीस", lang.words(38));
     }
 
     #[test]
     fn test_amounts() {
-	let lang = Nepali;
+        let lang = Nepali::new();
         assert_eq!("करोड", lang.amounts(Unit::Crore));
     }
 }
