@@ -32,7 +32,7 @@ assert_eq!(
   Ok(String::from("आठ हजार तीन सय उनन्साट्ठी")));
 ```
 
-Please take a look at the [official documentation](https://docs.rs/lakh-crore-numbers/0.1.0/lakh-crore-numbers/) as well.
+Please take a look at the [official documentation](https://docs.rs/lakh-crore-numbers/0.1.0/lakh_crore_numbers/) as well.
 
 
 ## Changelog
