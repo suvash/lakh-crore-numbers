@@ -1,0 +1,14 @@
+[package]
+name = "lakh-crore-numbers"
+version = "0.1.0"
+authors = ["Suvash Thapaliya <suvash@gmail.com>"]
+edition = "2018"
+description = "A Rust library for formatting numbers into the Lakh Crore (...हजार, लाख, करोड, अर्ब...) system."
+repository = "https://github.com/suvash/lakh-crore-numbers/tree/main/rust"
+license = "ISC"
+readme = "README.md"
+keywords = ["internationalization", "localization", "lakh", "crore", "nepali"]
+categories = ["localization", "internationalization", "encoding", "value-formatting"]
+include = ["src/**/*", "Cargo.toml", "LICENSE", "README.md"]
+
+[dependencies]
