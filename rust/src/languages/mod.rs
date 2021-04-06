@@ -42,6 +42,7 @@ pub trait Translatable {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::MAX_NUMBER;
     use nepali::Nepali;
 
     #[test]
@@ -78,13 +79,13 @@ mod tests {
     #[test]
     fn test_translatable_format_to_words_err_when_larger_than_max_number() {
         let nepali = Nepali::new();
-        let input = parse::MAX_NUMBER + 1;
+        let input = MAX_NUMBER + 1;
 
         assert_eq!(
             nepali.format_to_words(input).unwrap_err(),
             UnsupportedLargeNumberError {
                 number: input,
-                max_number: parse::MAX_NUMBER
+                max_number: MAX_NUMBER
             }
         );
     }
