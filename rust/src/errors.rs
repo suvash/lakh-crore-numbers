@@ -1,5 +1,7 @@
 use std::fmt;
 
+/// Error representing a number value not supported
+/// by the crate yet
 #[derive(Debug, PartialEq, Eq)]
 pub struct UnsupportedLargeNumberError {
     pub number: u64,
