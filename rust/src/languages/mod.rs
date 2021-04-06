@@ -28,7 +28,7 @@ pub trait Translatable {
     }
 
     fn format_to_words(&self, number: u64) -> Result<String, UnsupportedLargeNumberError> {
-        let chunks = parse::get_chunks(number)?;
+        let chunks = parse::chunks(number)?;
         let result = chunks
             .into_iter()
             .map(|x| self.format_chunk(x))

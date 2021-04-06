@@ -48,13 +48,13 @@ static UNITS: [Scale; 10] = [
     },
 ];
 
-pub fn get_chunks(number: u64) -> Result<Vec<Chunk>, UnsupportedLargeNumberError> {
+pub fn chunks(number: u64) -> Result<Vec<Chunk>, UnsupportedLargeNumberError> {
     let chunks = match number {
         0 => Ok(vec![Chunk {
             amount: 0,
             unit: Unit::None,
         }]),
-        1..=MAX_NUMBER => Ok(chunkator(number, &UNITS)),
+        1..=MAX_NUMBER => Ok(build_chunks(number, &UNITS)),
         _ => Err(UnsupportedLargeNumberError {
             number,
             max_number: MAX_NUMBER,
@@ -64,7 +64,7 @@ pub fn get_chunks(number: u64) -> Result<Vec<Chunk>, UnsupportedLargeNumberError
     chunks
 }
 
-fn chunkator(number: u64, scales: &[Scale; 10]) -> Vec<Chunk> {
+fn build_chunks(number: u64, scales: &[Scale; 10]) -> Vec<Chunk> {
     let mut chunks: Vec<Chunk> = Vec::new();
     let mut chunk_number = number;
 
@@ -90,10 +90,10 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_get_chunks_err_when_larger_than_max_number() {
+    fn test_chunks_err_when_larger_than_max_number() {
         let input = MAX_NUMBER + 1;
         assert_eq!(
-            get_chunks(input).unwrap_err(),
+            chunks(input).unwrap_err(),
             UnsupportedLargeNumberError {
                 number: input,
                 max_number: MAX_NUMBER
@@ -102,9 +102,9 @@ mod tests {
     }
 
     #[test]
-    fn test_get_chunks_ok_when_less_than_max_number() {
+    fn test_chunks_ok_when_less_than_max_number() {
         assert_eq!(
-            get_chunks(0).unwrap(),
+            chunks(0).unwrap(),
             vec![Chunk {
                 amount: 0,
                 unit: Unit::None
@@ -112,7 +112,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(13).unwrap(),
+            chunks(13).unwrap(),
             vec![Chunk {
                 amount: 13,
                 unit: Unit::None
@@ -120,7 +120,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(908).unwrap(),
+            chunks(908).unwrap(),
             vec![
                 Chunk {
                     amount: 9,
@@ -133,7 +133,7 @@ mod tests {
             ]
         );
         assert_eq!(
-            get_chunks(5_900).unwrap(),
+            chunks(5_900).unwrap(),
             vec![
                 Chunk {
                     amount: 5,
@@ -147,7 +147,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(10_246).unwrap(),
+            chunks(10_246).unwrap(),
             vec![
                 Chunk {
                     amount: 10,
@@ -165,7 +165,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(8_47_100).unwrap(),
+            chunks(8_47_100).unwrap(),
             vec![
                 Chunk {
                     amount: 8,
@@ -183,7 +183,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(84_00_712).unwrap(),
+            chunks(84_00_712).unwrap(),
             vec![
                 Chunk {
                     amount: 84,
@@ -201,7 +201,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(9_10_01_587).unwrap(),
+            chunks(9_10_01_587).unwrap(),
             vec![
                 Chunk {
                     amount: 9,
@@ -227,7 +227,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(48_02_87_694).unwrap(),
+            chunks(48_02_87_694).unwrap(),
             vec![
                 Chunk {
                     amount: 48,
@@ -253,7 +253,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(9_01_64_83_057).unwrap(),
+            chunks(9_01_64_83_057).unwrap(),
             vec![
                 Chunk {
                     amount: 9,
@@ -279,7 +279,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(30_27_42_04_793).unwrap(),
+            chunks(30_27_42_04_793).unwrap(),
             vec![
                 Chunk {
                     amount: 30,
@@ -309,7 +309,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(8_60_28_46_59_490).unwrap(),
+            chunks(8_60_28_46_59_490).unwrap(),
             vec![
                 Chunk {
                     amount: 8,
@@ -342,7 +342,7 @@ mod tests {
             ]
         );
         assert_eq!(
-            get_chunks(60_78_36_29_56_359).unwrap(),
+            chunks(60_78_36_29_56_359).unwrap(),
             vec![
                 Chunk {
                     amount: 60,
@@ -376,7 +376,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(2_34_63_48_43_73_958).unwrap(),
+            chunks(2_34_63_48_43_73_958).unwrap(),
             vec![
                 Chunk {
                     amount: 2,
@@ -414,7 +414,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(42_38_34_95_46_39_435).unwrap(),
+            chunks(42_38_34_95_46_39_435).unwrap(),
             vec![
                 Chunk {
                     amount: 42,
@@ -452,7 +452,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(5_23_85_69_07_97_85_879).unwrap(),
+            chunks(5_23_85_69_07_97_85_879).unwrap(),
             vec![
                 Chunk {
                     amount: 5,
@@ -494,7 +494,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(86_04_73_62_43_75_97_047).unwrap(),
+            chunks(86_04_73_62_43_75_97_047).unwrap(),
             vec![
                 Chunk {
                     amount: 86,
@@ -532,7 +532,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(9_68_74_62_34_86_57_46_593).unwrap(),
+            chunks(9_68_74_62_34_86_57_46_593).unwrap(),
             vec![
                 Chunk {
                     amount: 9,
@@ -578,7 +578,7 @@ mod tests {
         );
 
         assert_eq!(
-            get_chunks(82_05_95_79_52_68_50_73_935).unwrap(),
+            chunks(82_05_95_79_52_68_50_73_935).unwrap(),
             vec![
                 Chunk {
                     amount: 82,
