@@ -3,7 +3,7 @@ use super::types::Chunk;
 use super::types::Scale;
 use super::types::Unit;
 
-const MAX_NUMBER: u64 = 99_99_99_99_99_99_99_99_999;
+pub const MAX_NUMBER: u64 = 99_99_99_99_99_99_99_99_999;
 
 static UNITS: [Scale; 10] = [
     Scale {
