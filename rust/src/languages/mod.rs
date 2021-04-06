@@ -1,12 +1,10 @@
-mod nepali;
-use nepali::Nepali;
+pub mod nepali;
 
 use crate::errors::UnsupportedLargeNumberError;
 use crate::parse;
 use crate::types::{Chunk, Unit};
-use std::collections::HashMap;
 
-trait Translatable {
+pub trait Translatable {
     fn name(&self) -> &str;
     fn numbers(&self, numchar: char) -> &'static str;
     fn words(&self, number: u8) -> &'static str;
@@ -41,27 +39,10 @@ trait Translatable {
     }
 }
 
-fn available() -> HashMap<String, Box<dyn Translatable>> {
-    let mut languages: HashMap<String, Box<dyn Translatable>> = HashMap::new();
-
-    let nepali = Nepali::new();
-    languages.insert(nepali.name.clone(), Box::new(nepali));
-
-    languages
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    #[test]
-    fn test_available() {
-        assert_eq!(1, available().len());
-        assert_eq!(
-            available().keys().cloned().collect::<Vec<String>>(),
-            vec![String::from("nepali")],
-        );
-    }
+    use nepali::Nepali;
 
     #[test]
     fn test_translatable_format_chunk() {
