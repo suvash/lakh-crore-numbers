@@ -8,6 +8,7 @@ use std::collections::HashMap;
 
 trait Translatable {
     fn name(&self) -> &str;
+    fn numbers(&self, numchar: char) -> &'static str;
     fn words(&self, number: u8) -> &'static str;
     fn amounts(&self, unit: Unit) -> &'static str;
 
@@ -18,6 +19,14 @@ trait Translatable {
             Unit::None => format!("{}", word),
             _ => format!("{} {}", word, amount),
         }
+    }
+
+    fn format_to_numeral(&self, number: u64) -> String {
+        number
+            .to_string()
+            .chars()
+            .map(|x| self.numbers(x))
+            .collect::<String>()
     }
 
     fn format_to_words(&self, number: u64) -> Result<String, UnsupportedLargeNumberError> {
@@ -71,6 +80,12 @@ mod tests {
             }),
             "उनन्चालीस"
         );
+    }
+
+    #[test]
+    fn test_translatable_format_to_numeral() {
+        let nepali = Nepali::new();
+        assert_eq!(nepali.format_to_numeral(234), "२३४");
     }
 
     #[test]

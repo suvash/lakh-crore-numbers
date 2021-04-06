@@ -27,6 +27,22 @@ impl Translatable for Nepali {
         &self.name
     }
 
+    fn numbers(&self, numchar: char) -> &'static str {
+        match numchar {
+            '0' => "०",
+            '1' => "१",
+            '2' => "२",
+            '3' => "३",
+            '4' => "४",
+            '5' => "५",
+            '6' => "६",
+            '7' => "७",
+            '8' => "८",
+            '9' => "९",
+            _ => "",
+        }
+    }
+
     fn words(&self, number: u8) -> &'static str {
         match number {
             0 => "सुन्ना",
@@ -157,6 +173,12 @@ mod tests {
     fn test_name() {
         let lang = Nepali::new();
         assert_eq!("nepali", lang.name());
+    }
+
+    #[test]
+    fn test_numbers() {
+        let lang = Nepali::new();
+        assert_eq!("२", lang.numbers('2'));
     }
 
     #[test]
