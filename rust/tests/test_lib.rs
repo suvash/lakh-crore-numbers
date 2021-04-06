@@ -1,6 +1,11 @@
 use lakh_crore_numbers as lcn;
 
 #[test]
+fn test_format_to_nepali_numeral() {
+    assert_eq!(lcn::format_to_nepali_numeral(295678), "२९५६७८");
+}
+
+#[test]
 fn test_format_to_nepali_words_ok_when_less_than_max_number() {
     assert_eq!(
         lcn::format_to_nepali_words(8359).unwrap(),
