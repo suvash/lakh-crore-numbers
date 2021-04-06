@@ -9,18 +9,10 @@ A Rust crate for formatting numbers into the "Lakh Crore" (...हजार, ल�
 lakh-crore-numbers is available on crates.io:
 
 ```toml
-[dependencies]
 lakh-crore-numbers = "0.1.0"
 ```
 
-
 ## Documentation
-
-The current goal of the library is to be format numbers into two types of representation.
-- Number expressed as numeral in the target language
-- Number expressed as words in the target language
-
-A handful of functions are made publicly available to facilitate this.
 
 ## Formatting to Numerals (Nepali / नेपाली)
 
