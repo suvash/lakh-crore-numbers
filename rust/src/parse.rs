@@ -90,7 +90,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_get_chunks_returns_err_result_when_larger_than_max_number() {
+    fn test_get_chunks_err_when_larger_than_max_number() {
         let input = MAX_NUMBER + 1;
         assert_eq!(
             get_chunks(input).unwrap_err(),
@@ -102,7 +102,7 @@ mod tests {
     }
 
     #[test]
-    fn test_get_chunks_returns_ok_result_when_less_than_max_number() {
+    fn test_get_chunks_ok_when_less_than_max_number() {
         assert_eq!(
             get_chunks(0).unwrap(),
             vec![Chunk {
